@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="robot_ip" default="172.16.0.2"/>
+  <arg name="load_gripper" default="true" />
+  <arg name="launch_rviz" default="false" />
+  <arg name="launch_gz" default="false" />
+  <!--arg name="hardware_interface" default="PositionJointInterface" /-->
+  <!--arg name="robot_name" default="panda" /-->
+
+  <!-- launch the controllers for the real robot -->
+  <include file="$(find franka_control)/launch/franka_control.launch" >
+    <arg name="robot_ip" value="$(arg robot_ip)" />
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+  </include>
+
+  <!-- launch moveit -->
+  <include file="$(find panda_moveit_config)/launch/moveit.launch">
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+  </include>
+  <!-- and rviz - optional -->
+  <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg launch_rviz)" />
+
+  <!-- launch gazebo - optional
+  <include file="$(find franka_gazebo)/launch/franka_world.launch" if="$(arg launch_gz)">
+      <arg name="hardware_interface" value="$(arg hardware_interface)" />
+      <arg name="robot_name" value="$(arg robot_name)" />
+  </include>
+  -->
+
+</launch>
