@@ -10,7 +10,8 @@ Control the franka panda cobot and its original gripper via python (2.7) scripts
 6. cd to catkin workspace (franka_rospy) and catkin_make (fix errors)
 7. source franka_rospy/devel/setup.bash && export ROS_MASTER_URI=http://your.ip.add.ress:11311 && export ROS_IP=your.ip.add.ress'
 8. (optional) repeat on further computers (1-8) and send commands via network to RT computer  
-9. execute in franka_rospy/src/franka_python the basic scripts (e.g., panda_motion_generators.py)
+9. roslaunch the real_panda_moveit_launch.launch file from the panda_moveit_config/launch 
+10. execute in franka_rospy/src/franka_python the basic scripts (e.g., panda_motion_generators.py)
 
 
 ## Based on original Franka ROS
